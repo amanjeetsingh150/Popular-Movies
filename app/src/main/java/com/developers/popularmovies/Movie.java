@@ -7,29 +7,6 @@ import android.os.Parcelable;
  * Created by Amanjeet Singh on 25-Sep-16.
  */
 public class Movie implements Parcelable {
-    String poster;
-    String title;
-    String overview;
-    String release;
-    String rating;
-    String bannerimg;
-    public Movie(String poster,String title,String overview,String release,String rating,String bannerimg){
-     this.poster=poster;
-     this.title=title;
-     this.overview=overview;
-     this.release=release;
-     this.rating=rating;
-     this.bannerimg=bannerimg;
-    }
-
-    protected Movie(Parcel in) {
-        poster = in.readString();
-        title = in.readString();
-        overview = in.readString();
-        release = in.readString();
-        rating = in.readString();
-        bannerimg=in.readString();
-    }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
@@ -42,6 +19,30 @@ public class Movie implements Parcelable {
             return new Movie[size];
         }
     };
+    String poster;
+    String title;
+    String overview;
+    String release;
+    String rating;
+    String bannerimg;
+
+    public Movie(String poster, String title, String overview, String release, String rating, String bannerimg) {
+        this.poster = poster;
+        this.title = title;
+        this.overview = overview;
+        this.release = release;
+        this.rating = rating;
+        this.bannerimg = bannerimg;
+    }
+
+    protected Movie(Parcel in) {
+        poster = in.readString();
+        title = in.readString();
+        overview = in.readString();
+        release = in.readString();
+        rating = in.readString();
+        bannerimg = in.readString();
+    }
 
     @Override
     public int describeContents() {
@@ -57,22 +58,28 @@ public class Movie implements Parcelable {
         dest.writeString(rating);
         dest.writeString(bannerimg);
     }
-    public String getTitle(){
+
+    public String getTitle() {
         return title;
     }
-    public String getPoster(){
+
+    public String getPoster() {
         return poster;
     }
-    public String getOverview(){
+
+    public String getOverview() {
         return overview;
     }
-    public String getRelease(){
+
+    public String getRelease() {
         return release;
     }
-    public String getRating(){
+
+    public String getRating() {
         return rating;
     }
-    public String getBannerimg(){
+
+    public String getBannerimg() {
         return bannerimg;
     }
 }

@@ -3,4 +3,31 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="popular">popular</string>
+    <string name="api_key_attr">api_key</string>
+    <string name="top_rated_attr">top_rated</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="sort_key">sort</string>
+    <string name="sort_by">sort_by</string>
+    <string name="sort_preference">Sort Results</string>
+    <string-array name="sort_name">
+        <item>
+            Most Popular
+        </item>
+        <item>
+            Highest Rated
+        </item>
+    </string-array>
+    <string-array name="sort_values">
+        <item>
+            0
+        </item>
+        <item>
+            1
+        </item>
+    </string-array>
+    <string name="sort_default">0</string>
+    <string name="sort_title">Sort Order</string>
+
 </resources>
+
