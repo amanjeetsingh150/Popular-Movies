@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:elevation="8dp"
     android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="8dp"
     android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,13 +13,13 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/img"
+            android:id="@+id/movie_image_view"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:scaleType="fitXY" />
 
         <TextView
-            android:id="@+id/mtitle"
+            android:id="@+id/movie_text_view"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"

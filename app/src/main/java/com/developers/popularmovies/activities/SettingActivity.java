@@ -1,5 +1,7 @@
 package com.developers.popularmovies.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -9,10 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.developers.popularmovies.R;
+import com.developers.popularmovies.util.Constants;
 
 import java.util.prefs.PreferenceChangeListener;
 
 public class SettingActivity extends PreferenceActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +26,14 @@ public class SettingActivity extends PreferenceActivity {
 
     public static class PrefFrag extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
 
+        private SharedPreferences sharedPreferences;
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.setting_activity);
-
+            sharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFERENCES,
+                    Context.MODE_PRIVATE);
             bindPreference(findPreference(getString(R.string.sort_key)));
         }
 
@@ -47,6 +54,8 @@ public class SettingActivity extends PreferenceActivity {
                 ListPreference listPreference = (ListPreference) preference;
                 int prefIndex = listPreference.findIndexOfValue(stringValue);
                 if (prefIndex >= 0) {
+                    sharedPreferences.edit().putString(getString(R.string.sort_key)
+                            , String.valueOf(prefIndex)).apply();
                     preference.setSummary(listPreference.getEntries()[prefIndex]);
                 }
             } else {

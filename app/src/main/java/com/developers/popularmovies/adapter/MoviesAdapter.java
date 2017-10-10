@@ -6,12 +6,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.developers.popularmovies.util.Constants;
 import com.developers.popularmovies.Movie;
 import com.developers.popularmovies.R;
 import com.developers.popularmovies.activities.DetailActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -48,6 +51,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
                 context.startActivity(intent);
             }
         });
+        holder.movieTextView.setText(movieList.get(position).getTitle());
+        Picasso.with(context).load(movieList.get(position).getPoster()).into(holder.moviePoster);
     }
 
     @Override
@@ -56,8 +61,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+
         @BindView(R.id.grid_background)
         LinearLayout linearLayout;
+        @BindView(R.id.movie_image_view)
+        ImageView moviePoster;
+        @BindView(R.id.movie_text_view)
+        TextView movieTextView;
 
         public MyViewHolder(View itemView) {
             super(itemView);
