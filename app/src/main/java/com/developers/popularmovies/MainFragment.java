@@ -5,10 +5,15 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,9 +25,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.developers.popularmovies.activities.DetailActivity;
 import com.developers.popularmovies.activities.SettingActivity;
 import com.developers.popularmovies.adapter.MoviesAdapter;
+import com.developers.popularmovies.util.AnimationCallBack;
 import com.developers.popularmovies.util.Constants;
 
 import org.json.JSONArray;
@@ -45,11 +55,11 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements AnimationCallBack {
 
 
     private static final String TAG = MainFragment.class.getSimpleName();
-    @BindView(R.id.movie_grid)
+    @BindView(R.id.movie_recycler_view)
     RecyclerView movieRecyclerView;
     private ProgressDialog progress;
     private List<Movie> mList;
@@ -89,10 +99,38 @@ public class MainFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Log.d(TAG, "OnStart");
-        String order = sharedPreferences.getString(getString(R.string.sort_key), "0");
-        Log.d(TAG, order);
-        new FetchPopularMovie().execute();
+        if (isNetworkConnected()) {
+            new FetchPopularMovie().execute();
+        } else {
+            Toast.makeText(getActivity(), getString(R.string.no_internet_error), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+    }
+
+    @Override
+    public void launchDetailsActivity(Movie movie, TextView movieTextView, ImageView moviePoster) {
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra(Constants.KEY_MOVIES, movie);
+        Pair<View, String> p1 = Pair.create((View) moviePoster, getString(R.string.movie_image_transition));
+        Pair<View, String> p2 = Pair.create((View) movieTextView,
+                getString(R.string.movie_title_transition));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ActivityOptionsCompat options = ActivityOptionsCompat.
+                    makeSceneTransitionAnimation(getActivity(), p1, p2);
+            startActivity(intent, options.toBundle());
+        } else {
+            startActivity(intent);
+        }
+        ;
     }
 
     public class FetchPopularMovie extends AsyncTask<Void, Void, Integer> {
@@ -173,6 +211,7 @@ public class MainFragment extends Fragment {
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
                 movieRecyclerView.setLayoutManager(gridLayoutManager);
                 moviesAdapter = new MoviesAdapter(getActivity(), mList);
+                moviesAdapter.setAnimationCallBack(MainFragment.this);
                 movieRecyclerView.setAdapter(moviesAdapter);
                 progress.dismiss();
             }
@@ -206,4 +245,6 @@ public class MainFragment extends Fragment {
             }
         }
     }
+
+
 }

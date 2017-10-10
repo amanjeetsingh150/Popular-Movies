@@ -28,6 +28,11 @@
     </string-array>
     <string name="sort_default">0</string>
     <string name="sort_title">Sort Order</string>
-
+    <string name="no_internet_error">You are not connected to internet!!/nPlease connect and try again.</string>
+    <string name="movie_image_transition">movie_image</string>
+    <string name="movie_title_transition">movie_title</string>
+    <string name="overview_text">Overview</string>
+    <string name="release_text">Release:</string>
+    <string name="rating">Rating:</string>
 </resources>
 

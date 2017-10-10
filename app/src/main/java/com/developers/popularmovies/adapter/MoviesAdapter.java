@@ -2,6 +2,8 @@ package com.developers.popularmovies.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.developers.popularmovies.util.AnimationCallBack;
 import com.developers.popularmovies.util.Constants;
 import com.developers.popularmovies.Movie;
 import com.developers.popularmovies.R;
@@ -29,10 +32,15 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
 
     private Context context;
     private List<Movie> movieList;
+    private AnimationCallBack animationCallBack;
 
     public MoviesAdapter(Context context, List<Movie> movieList) {
         this.context = context;
         this.movieList = movieList;
+    }
+
+    public MoviesAdapter() {
+
     }
 
     @Override
@@ -42,13 +50,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra(Constants.KEY_MOVIES, movieList.get(position));
-                context.startActivity(intent);
+                animationCallBack.launchDetailsActivity(movieList.get(position),
+                        holder.movieTextView,
+                        holder.moviePoster);
             }
         });
         holder.movieTextView.setText(movieList.get(position).getTitle());
@@ -58,6 +66,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     @Override
     public int getItemCount() {
         return movieList.size();
+    }
+
+    public void setAnimationCallBack(AnimationCallBack animationCallBack) {
+        this.animationCallBack = animationCallBack;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
