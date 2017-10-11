@@ -59,6 +59,7 @@ public class MainFragment extends Fragment implements AnimationCallBack {
 
 
     private static final String TAG = MainFragment.class.getSimpleName();
+    public static boolean changed = false;
     @BindView(R.id.movie_recycler_view)
     RecyclerView movieRecyclerView;
     private ProgressDialog progress;
@@ -77,6 +78,7 @@ public class MainFragment extends Fragment implements AnimationCallBack {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, v);
         setHasOptionsMenu(true);
+        new FetchPopularMovie().execute();
         sharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFERENCES,
                 Context.MODE_PRIVATE);
         return v;
@@ -100,7 +102,10 @@ public class MainFragment extends Fragment implements AnimationCallBack {
     public void onStart() {
         super.onStart();
         if (isNetworkConnected()) {
-            new FetchPopularMovie().execute();
+            if (changed) {
+                new FetchPopularMovie().execute();
+            }
+            changed = false;
         } else {
             Toast.makeText(getActivity(), getString(R.string.no_internet_error), Toast.LENGTH_SHORT).show();
         }

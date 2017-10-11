@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.developers.popularmovies.MainFragment;
 import com.developers.popularmovies.R;
 import com.developers.popularmovies.util.Constants;
 
@@ -56,6 +57,7 @@ public class SettingActivity extends PreferenceActivity {
                 if (prefIndex >= 0) {
                     sharedPreferences.edit().putString(getString(R.string.sort_key)
                             , String.valueOf(prefIndex)).apply();
+                    MainFragment.changed=true;
                     preference.setSummary(listPreference.getEntries()[prefIndex]);
                 }
             } else {
