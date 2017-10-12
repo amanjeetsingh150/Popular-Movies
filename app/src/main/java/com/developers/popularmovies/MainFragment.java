@@ -227,20 +227,20 @@ public class MainFragment extends Fragment implements AnimationCallBack {
             try {
                 Log.d(TAG, response);
                 JSONObject result = new JSONObject(response);
-                JSONArray arr = result.getJSONArray("results");
+                JSONArray arr = result.getJSONArray(getString(R.string.attr_results));
                 String poster, title, overview, release, rating, bannerimg;
                 mList = new ArrayList<>(arr.length());
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject movie = arr.getJSONObject(i);
                     posterUri = Uri.parse(Constants.BASE_URL_IMAGES).buildUpon()
-                            .appendEncodedPath(movie.getString("poster_path")).build();
+                            .appendEncodedPath(movie.getString(getString(R.string.attr_poster_path))).build();
                     poster = posterUri.toString();
-                    title = movie.getString("original_title");
-                    overview = movie.getString("overview");
-                    release = movie.getString("release_date");
-                    rating = movie.getString("vote_average");
+                    title = movie.getString(getString(R.string.attr_title));
+                    overview = movie.getString(getString(R.string.attr_overview));
+                    release = movie.getString(getString(R.string.attr_release));
+                    rating = movie.getString(getString(R.string.attr_vote));
                     imageUri = Uri.parse(Constants.BASE_URL_IMAGES).buildUpon()
-                            .appendEncodedPath(movie.getString("backdrop_path")).build();
+                            .appendEncodedPath(movie.getString(getString(R.string.backdrop_attr))).build();
                     bannerimg = imageUri.toString();
                     Movie movie1 = new Movie(poster, title, overview, release, rating, bannerimg);
                     mList.add(movie1);

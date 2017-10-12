@@ -35,5 +35,12 @@
     <string name="release_text">Release: </string>
     <string name="rating">Rating: </string>
     <string name="loading_message">Loading&#8230;</string>
+    <string name="attr_results">results</string>
+    <string name="attr_poster_path">poster_path</string>
+    <string name="attr_title">original_title</string>
+    <string name="attr_overview">overview</string>
+    <string name="attr_release">release_date</string>
+    <string name="attr_vote">vote_average</string>
+    <string name="backdrop_attr">backdrop_path</string>
 </resources>
 
