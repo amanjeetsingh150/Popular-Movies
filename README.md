@@ -1,5 +1,9 @@
 # Popular-Movies
-This is an android application as a part of udacity intermediate course.
-![14483835_1080225115392828_227671897_n](https://cloud.githubusercontent.com/assets/12881364/18833374/ed005fd4-840d-11e6-8f5e-82a3171fad57.png)
-![14459881_1080225405392799_1297640595_n](https://cloud.githubusercontent.com/assets/12881364/18833386/f5758b08-840d-11e6-94c0-7d7704d13471.png)
-![14454542_1080225295392810_1575828144_n](https://cloud.githubusercontent.com/assets/12881364/18833392/fb8cc204-840d-11e6-8ba4-cb9743e1df72.png)
+
+Udacity Android developer Nanodegree first project.
+Popular Movies, an Android Application for displaying popular movies and highest rated movies
+<br><br>
+<img src="https://user-images.githubusercontent.com/12881364/31494526-4b35a7be-af71-11e7-8514-952ceebb2b8d.png" height=500>&nbsp; &nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/12881364/31494531-51284afa-af71-11e7-968c-14b05da2eada.png" height=500>
+<br><br>
+<img src="https://user-images.githubusercontent.com/12881364/31494542-5db90a16-af71-11e7-8985-7bdb61eedbf1.png" height=500>&nbsp; &nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/12881364/31494546-630058da-af71-11e7-8805-7f375f942b05.png" height=500>
+
