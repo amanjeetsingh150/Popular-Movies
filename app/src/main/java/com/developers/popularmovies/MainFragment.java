@@ -146,7 +146,7 @@ public class MainFragment extends Fragment implements AnimationCallBack {
         @Override
         protected void onPreExecute() {
             progress = new ProgressDialog(getActivity());
-            progress.setMessage("Loading....");
+            progress.setMessage(getString(R.string.loading_message));
             progress.setCancelable(false);
             progress.show();
         }

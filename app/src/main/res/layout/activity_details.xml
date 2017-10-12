@@ -35,8 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="parallax"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:titleTextColor="@android:color/white" />
+                app:theme="@style/ToolbarTheme"
+                app:popupTheme="@style/AppTheme" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
@@ -65,7 +65,7 @@
                     android:scaleType="fitXY"
                     android:transitionName="@string/movie_image_transition" />
 
-                <LinearLayoutgit
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -96,7 +96,7 @@
                         android:layout_marginTop="5dp"
                         android:textColor="#000"
                         android:textSize="15sp" />
-                </LinearLayoutgit>
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -111,6 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/overview_text"
+                android:layout_marginLeft="15dp"
                 android:textColor="#689f38"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -120,6 +121,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+
                 android:textSize="15sp" />
         </LinearLayout>
 
